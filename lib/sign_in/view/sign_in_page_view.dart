@@ -85,7 +85,7 @@ class _SignInPageViewState extends State<SignInPageView> {
                     child: Transform.scale(
                       scale: 1.3,
                       child: Image.asset(
-                        'assets/images/pp.png',
+                        'assets/images/google.png',
                         fit: BoxFit.cover,
                       ),
                     ),

@@ -1,4 +1,6 @@
 import 'package:family_plan/firebase/connection.dart';
+import 'package:family_plan/page1/view/page_1_view.dart';
+import 'package:family_plan/page2/view/page_2_view.dart';
 import 'package:family_plan/sign_in/view/sign_in_page_view.dart';
 import 'package:family_plan/sign_up/view/sign_up_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -136,6 +138,11 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,debugShowCheckedModeBanner: false,
       home: MyHomePage(),
+      routes: {
+        '/home': (context) => MyHomePage(),
+        '/page1': (context) => Page1(),
+        '/page2': (context) => Page2(),
+      },
     );
   }
 }
