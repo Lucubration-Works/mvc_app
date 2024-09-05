@@ -40,16 +40,16 @@ class _HomePageViewState extends State<HomePageView> {
             ),
             ListTile(
               leading: Icon(Icons.pageview),
-              title: Text('Sayfa 1'),
+              title: Text('Aile Giriş ve Kayıt'),
               onTap: () {
-                Navigator.pushNamed(context, '/page1');
+                Navigator.pushNamed(context, '/aile_giris');
               },
             ),
             ListTile(
               leading: Icon(Icons.pages),
-              title: Text('Sayfa 2'),
+              title: Text('Aile Üyeleri'),
               onTap: () {
-                Navigator.pushNamed(context, '/page2');
+                Navigator.pushNamed(context, '/aile_icerik');
               },
             ),
           ],

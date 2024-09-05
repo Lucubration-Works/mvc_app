@@ -1,12 +1,11 @@
 import 'package:family_plan/firebase/connection.dart';
-import 'package:family_plan/page1/view/page_1_view.dart';
-import 'package:family_plan/page2/view/page_2_view.dart';
+import 'package:family_plan/aile/view/aile_icerik_view.dart';
 import 'package:family_plan/sign_in/view/sign_in_page_view.dart';
-import 'package:family_plan/sign_up/view/sign_up_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
+import 'aile/view/aile_giris_view.dart';
 import 'firebase/user_management.dart';
 import 'home/view/home_page_view.dart';
 
@@ -140,8 +139,8 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
       routes: {
         '/home': (context) => MyHomePage(),
-        '/page1': (context) => Page1(),
-        '/page2': (context) => Page2(),
+        '/aile_giris': (context) => AileGiris(),
+        '/aile_icerik': (context) => AileIcerik(),
       },
     );
   }

@@ -22,5 +22,10 @@
   <string>1.0</string>
   <key>MinimumOSVersion</key>
   <string>12.0</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>We need access to your photo library to select images.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>We need access to your camera to take pictures.</string>
+
 </dict>
 </plist>
