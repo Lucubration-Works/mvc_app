@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:family_plan/aile/controller/aile_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -128,6 +130,8 @@ class _AileGirisState extends State<AileGiris> {
   //   }
   // }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -201,7 +205,8 @@ class _AileGirisState extends State<AileGiris> {
                     final DatabaseReference databaseRef = FirebaseDatabase.instance.ref('families');
                     final DatabaseReference newRef = databaseRef.push();
                     final String documentId = newRef.key!;
-                    final String registrationCode = documentId.substring(0, 6);
+                    final Random random = Random();
+                    final String registrationCode = (random.nextInt(900000) + 100000).toString();
                     final String userId = user.uid;
                     final DateTime creationTime = DateTime.now();
 
@@ -210,6 +215,7 @@ class _AileGirisState extends State<AileGiris> {
                       'members': {
                         userId: {
                           'role': 'Admin',
+                          'userId': userId,
                         },
                       },
                       'creatorId': userId,
@@ -228,7 +234,7 @@ class _AileGirisState extends State<AileGiris> {
                     // Navigate to Page2
                     Navigator.pushReplacementNamed(
                       context,
-                      '/page2',
+                      '/aile_icerik',
                       arguments: {'documentId': documentId},
                     );
                   } catch (e) {

@@ -19,7 +19,7 @@ class SignUpController {
         try {
           RealtimeDatabaseConnection connection = await RealtimeDatabaseConnection.initialize();
           RealtimeDatabaseManager manager = RealtimeDatabaseManager(connection.getRealtimeDb().ref(), 'users');
-          await manager.create({'name': name_controller.value.text, 'email': email_controller,'password': password_controller.value.text});
+          await manager.create({'name': name_controller.value.text, 'email': email_controller.value.text,'password': password_controller.value.text,'familyID':"",'userID':newUser.userId});
           print('User added to Realtime Database');
         } catch (e) {
           print('Database Error: $e');

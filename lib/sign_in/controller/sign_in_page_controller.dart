@@ -19,7 +19,7 @@ class SignInPageController {
           return true;
         } else {
           // Kullanıcının e-posta adresi doğrulanmamış
-          return false;
+          return true;
         }
       } else {
         throw FirebaseAuthException(

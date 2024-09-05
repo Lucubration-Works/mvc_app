@@ -36,6 +36,37 @@ class AileController {
     );
   }
 
+  Future<void> updateUserFamilyID(String userID,String f_id) async {
+    final DatabaseReference databaseReference = FirebaseDatabase.instance.ref('users');
+
+    try {
+      // Belirtilen userID'yi eşleştiren kullanıcı verilerini çek
+      final snapshot = await databaseReference.orderByChild('userID').equalTo(userID).get();
+
+      // Eğer veriler mevcutsa
+      if (snapshot.exists) {
+        final userMap = snapshot.value as Map<dynamic, dynamic>;
+
+        if (userMap.isNotEmpty) {
+          // İlk anahtarı al
+          final key = userMap.keys.first;
+
+          // 'name' alanını boş bırakacak şekilde güncelle
+          await databaseReference.child(key).update({
+            'familyID': f_id,
+          });
+
+          print('Kullanıcı familyID güncellendi.');
+        }
+      } else {
+        print('Kullanıcı bulunamadı.');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+
   Future<void> fetchFamilyDataByRegistrationCode(String registrationCode, BuildContext context) async {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
@@ -59,6 +90,10 @@ class AileController {
 
         // Document ID'yi al
         final documentId = familyDataMap.keys.first as String;
+        print(documentId);
+
+        updateUserFamilyID(user.uid, documentId);
+
 
         // Verinin içeriğini al
         final familyData = familyDataMap[documentId] as Map<Object?, Object?>;
@@ -77,7 +112,7 @@ class AileController {
         // Kullanıcıyı aile üyeleri listesine ekle
         final updatedMembers = {
           ...members,
-          user.uid: {'role': 'Member'},
+          user.uid: {'role': 'Member','userId':user.uid},
         };
 
         // Veriyi güncelle
@@ -126,5 +161,73 @@ class AileController {
   }
 
 
+
+  Future<Map<String, dynamic>?> getUserDataById(String userID) async {
+    final databaseReference = FirebaseDatabase.instance.ref('users');
+    try {
+      final snapshot = await databaseReference.orderByChild('userID').equalTo(userID).get();
+      if (snapshot.exists) {
+        final userMap = snapshot.value as Map<dynamic, dynamic>;
+        if (userMap.isNotEmpty) {
+          final key = userMap.keys.first;
+          return Map<String, dynamic>.from(userMap[key]);
+        }
+      }
+      return null;
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
+
+  Future<String?> getCurrentUserId() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+
+    if (user != null) {
+      // Kullanıcı oturum açmış, kullanıcı ID'sini döndür
+      return user.uid;
+    } else {
+      // Kullanıcı oturum açmamış, null döndür
+      return null;
+    }
+  }
+
+  Future<String?> getUserRole(String userID) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? currentUser = auth.currentUser;
+
+    if (currentUser == null) {
+      return null;
+    }
+
+    final databaseReference = FirebaseDatabase.instance.ref('families');
+
+    try {
+      // Kullanıcının ait olduğu ailenin ID'sini almak için öncelikle ailenin belgelerinden alın.
+      final familiesSnapshot = await databaseReference.get();
+
+      if (familiesSnapshot.exists) {
+        final familiesMap = familiesSnapshot.value as Map<dynamic, dynamic>;
+
+        for (var familyEntry in familiesMap.entries) {
+          final familyID = familyEntry.key;
+          final familyData = familyEntry.value as Map<dynamic, dynamic>;
+
+          final members = familyData['members'] as Map<dynamic, dynamic>?;
+
+          if (members != null && members.containsKey(userID)) {
+            final userRole = members[userID]['role'];
+            return userRole;
+          }
+        }
+      }
+
+      return null; // Rol bilgisi bulunamadı
+    } catch (e) {
+      print('Error: $e');
+      return null; // Hata durumunda null döndür
+    }
+  }
 
 }
