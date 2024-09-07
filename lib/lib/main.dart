@@ -1,11 +1,11 @@
-import 'package:family_plan/firebase/connection.dart';
-import 'package:family_plan/aile/view/aile_icerik_view.dart';
-import 'package:family_plan/sign_in/view/sign_in_page_view.dart';
+import 'package:family_plan/lib/sign_in/view/sign_in_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 import 'aile/view/aile_giris_view.dart';
+import 'aile/view/aile_icerik_view.dart';
+import 'firebase/connection.dart';
 import 'firebase/user_management.dart';
 import 'home/view/home_page_view.dart';
 

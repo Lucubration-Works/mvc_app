@@ -1,12 +1,12 @@
-import 'package:family_plan/home/view/home_page_view.dart';
-import 'package:family_plan/sign_in/controller/sign_in_page_controller.dart';
-import 'package:family_plan/sign_up/view/sign_up_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:translator/translator.dart';
 
 import '../../firebase/user_management.dart';
+import '../../home/view/home_page_view.dart';
+import '../../sign_up/view/sign_up_page_view.dart';
+import '../controller/sign_in_page_controller.dart';
 
 class SignInPageView extends StatefulWidget {
   const SignInPageView({super.key});

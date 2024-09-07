@@ -1,9 +1,7 @@
-import 'package:family_plan/sign_in/view/sign_in_page_view.dart';
-import 'package:family_plan/sign_up/controller/sign_up_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import '../../home/view/home_page_view.dart';
+import '../../sign_in/view/sign_in_page_view.dart';
+import '../controller/sign_up_controller.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -162,6 +160,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
+
+              
               SizedBox(height: screenHeight * 0.1),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(

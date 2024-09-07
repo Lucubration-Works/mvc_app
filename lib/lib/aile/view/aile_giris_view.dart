@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:family_plan/aile/controller/aile_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +10,9 @@ import 'dart:typed_data';
 import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:path_provider/path_provider.dart';
-import 'package:qr_flutter/qr_flutter.dart'; // Import QrFlutter package if not already
+import 'package:qr_flutter/qr_flutter.dart';
+
+import '../controller/aile_controller.dart'; // Import QrFlutter package if not already
 
 class AileGiris extends StatefulWidget {
   const AileGiris({super.key});
@@ -136,7 +136,7 @@ class _AileGirisState extends State<AileGiris> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sayfa 1'),
+        title: Text('Aile Oluştur veya Katıl'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -262,6 +262,7 @@ class _AileGirisState extends State<AileGiris> {
                 },
                 child: Text('Aileye Katıl'),
               ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
                   await _generateQrCode();
@@ -303,14 +304,11 @@ class _AileGirisState extends State<AileGiris> {
                 },
                 child: Text('QR Kodu Üret'),
               ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: (){},
                 child: Text('QR Kodunu Oku'),
               ),
-
-
-
-
             ],
           ),
         ),
