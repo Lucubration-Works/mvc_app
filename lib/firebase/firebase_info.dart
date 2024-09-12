@@ -1,5 +1,6 @@
-import 'package:family_plan/lib/firebase/realtime_database.dart';
-import 'package:family_plan/lib/firebase/user_management.dart';
+
+import 'package:family_plan/firebase/realtime_database.dart';
+import 'package:family_plan/firebase/user_management.dart';
 import 'package:flutter/material.dart';
 
 import 'connection.dart';

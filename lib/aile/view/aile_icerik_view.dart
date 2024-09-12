@@ -186,6 +186,13 @@ class _AileIcerikState extends State<AileIcerik> {
                 Navigator.pushNamed(context, '/aile_icerik');
               },
             ),
+            ListTile(
+              leading: Icon(Icons.pages),
+              title: Text('ToDO Listesi'),
+              onTap: () {
+                Navigator.pushNamed(context, '/to_do_list');
+              },
+            ),
           ],
         ),
       ),
